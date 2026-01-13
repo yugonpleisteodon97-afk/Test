@@ -5,4 +5,4 @@ nixPkgs = ['python311', 'postgresql', 'gcc', 'g++', 'libpq']
 cmds = ['pip install --upgrade pip', 'pip install -r requirements.txt']
 
 [start]
-cmd = 'gunicorn --bind 0.0.0.0:$PORT --workers 4 --timeout 120 "app:create_app()"'
+cmd = 'gunicorn --bind 0.0.0.0:$PORT --workers 4 --timeout 120 wsgi:app'
