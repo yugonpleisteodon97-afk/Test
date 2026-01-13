@@ -1,0 +1,143 @@
+================================================================================
+RAILWAY DEPLOYMENT CHECKLIST
+================================================================================
+
+Use this checklist to track your deployment progress.
+
+================================================================================
+PRE-DEPLOYMENT
+================================================================================
+
+[ ] All files committed to git
+[ ] Pushed to GitHub (main branch)
+[ ] Generated secure keys (python generate_railway_keys.py)
+[ ] Saved the generated keys securely
+[ ] Verified setup (python verify_railway_setup.py - all checks pass)
+
+================================================================================
+RAILWAY SETUP
+================================================================================
+
+[ ] Created Railway account / logged in
+[ ] Created new Railway project
+[ ] Connected GitHub repository
+
+================================================================================
+DATABASE SERVICES
+================================================================================
+
+[ ] Added PostgreSQL database service
+    - Note DATABASE_URL: _________________________________
+
+[ ] Added Redis service
+    - Note REDIS_URL: _____________________________________
+
+================================================================================
+APPLICATION SERVICES
+================================================================================
+
+[ ] Web service (radar-web) deployed
+    - Public URL: __________________________________________
+    - Status: Active [ ]
+    - Domain generated: [ ]
+
+[ ] Worker service (radar-worker) deployed
+    - Start command set correctly [ ]
+    - Status: Active [ ]
+
+[ ] Beat service (radar-beat) deployed
+    - Start command set correctly [ ]
+    - Status: Active [ ]
+
+================================================================================
+ENVIRONMENT VARIABLES
+================================================================================
+
+[ ] radar-web environment variables configured:
+    [ ] DATABASE_URL=${{Postgres.DATABASE_URL}}
+    [ ] REDIS_URL=${{Redis.REDIS_URL}}
+    [ ] CELERY_BROKER_URL=${{Redis.REDIS_URL}}/1
+    [ ] CELERY_RESULT_BACKEND=${{Redis.REDIS_URL}}/2
+    [ ] SECRET_KEY=<generated-key>
+    [ ] JWT_SECRET_KEY=<generated-key>
+    [ ] ENCRYPTION_KEY=<generated-key>
+    [ ] FLASK_ENV=production
+    [ ] FLASK_APP=app
+    [ ] ALLOWED_ORIGINS=<your-railway-domain>
+
+[ ] radar-worker environment variables configured (same as above)
+
+[ ] radar-beat environment variables configured (same as above)
+
+[ ] Optional API keys added (if needed):
+    [ ] ALPHA_VANTAGE_API_KEY
+    [ ] CRUNCHBASE_API_KEY
+    [ ] NEWS_API_KEY
+    [ ] Other keys as needed
+
+================================================================================
+VERIFICATION
+================================================================================
+
+[ ] All services show "Active" status
+[ ] No errors in deployment logs
+[ ] Web service URL is accessible
+[ ] Can load the application homepage
+[ ] Can register/login to application
+[ ] Database migrations completed successfully
+
+================================================================================
+TESTING
+================================================================================
+
+[ ] Application loads correctly
+[ ] User authentication works
+[ ] API endpoints respond correctly
+[ ] Background tasks are processing (check worker logs)
+[ ] Scheduled tasks are running (check beat logs)
+[ ] No CORS errors in browser console
+
+================================================================================
+OPTIONAL CONFIGURATION
+================================================================================
+
+[ ] Custom domain configured
+[ ] Railway Volume mounted (if using local file storage)
+[ ] SSL/HTTPS working (automatic with Railway)
+[ ] OAuth providers configured (Google, Microsoft)
+[ ] Monitoring/alerts set up
+[ ] Sentry configured (if using)
+
+================================================================================
+POST-DEPLOYMENT
+================================================================================
+
+[ ] Documented the Railway domain URL
+[ ] Updated any external services with new URLs
+[ ] Informed team members of new deployment
+[ ] Set up monitoring/alerts
+[ ] Scheduled regular backups check
+[ ] Reviewed Railway usage/costs
+
+================================================================================
+CLEANUP (Optional)
+================================================================================
+
+[ ] Stopped Docker containers (if running locally)
+[ ] Removed old deployment infrastructure
+[ ] Updated documentation with Railway info
+[ ] Archived old deployment configs
+
+================================================================================
+
+DEPLOYMENT COMPLETE!
+
+Web URL: ________________________________________________________
+
+Deployment Date: ________________________________________________
+
+Notes: __________________________________________________________
+________________________________________________________________
+________________________________________________________________
+
+================================================================================

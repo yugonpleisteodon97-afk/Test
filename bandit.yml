@@ -1,0 +1,22 @@
+# Bandit security scanning configuration
+
+exclude_dirs:
+  - tests
+  - migrations
+  - venv
+  - env
+  - .venv
+
+skips:
+  - B101  # assert_used (allow asserts in tests)
+  - B601  # shell_injection_subprocess (false positives)
+
+tests:
+  - B201  # flask_debug_true
+  - B301  # pickle_usage
+  - B302  # marshal_usage
+  - B308  # mark_safe
+  - B501  # request_with_no_cert_validation
+  - B506  # yaml_load
+  - B602  # subprocess_popen_with_shell_equals_true
+  - B608  # hardcoded_sql_expressions
